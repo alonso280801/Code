@@ -1,52 +1,68 @@
+import java.util.Arrays;
+
 public class Revisador {
     public static void main(String[] args) {
         String texto = "Tres Anillos para los Reyes Elfos bajo el cielo. Siete para los Señores Enanos en palacios de piedra. Nueve para los Hombres Mortales condenados a morir. Uno para el Señor Oscuro, sobre el trono obscuro en la Tierra de Mordor donde se extienden las Sombras. Un Anillo para gobernarlos a todos. Un Anillo para encontrarlos, un Anillo para atraerlos a todos y atarlos en las tinieblas en la Tierra de Mordor donde se extienden las sombras.";
+        Procesador p = new Procesador();
+        System.out.println(p.procesado2(texto));
+
 
         String[] palabras = texto.split(" ");
-        Procesador p = new Procesador();
+        
+        //Arrays.sort(palabras); // Ordena el arreglo de palabras
 
-        for (int i = 0; i < palabras.length; i++) {
-            if (p.procesado1(palabras[i])) {
-                System.out.println(palabras[i]);
-            }
-            if (p.procesado2(palabras[i])) {
-                System.out.println(palabras[i]);
-            }
-            if (p.procesado3(palabras[i])) {
-                System.out.println(palabras[i]);
-            }
-        }
-
-
-        /*int inicio = 0;
+        //Busca el primer error con el metodo procesado1
+        int inicio = 0;
         int fin = palabras.length - 1;
-
-        boolean contiene1 = false;
-        boolean contiene2 = false;
-        boolean contiene3 = false;
-
+    
         while (inicio <= fin) {
             int medio = (inicio + fin) / 2;
-            String palabraActual = palabras[medio];
-            System.out.println(palabraActual);
-
-            if (p.procesado1(palabraActual)) {
-                System.out.println(palabraActual);
-                contiene1 = true;
-                fin = medio - 1;
-            } else if (p.procesado2(palabraActual)) {
-                System.out.println(palabraActual);
-                contiene2 = true;
-                fin = medio - 1;
-            } else if (p.procesado3(palabraActual)) {
-                System.out.println(palabraActual);
-                contiene3 = true;
-                fin = medio - 1;
-            } else {
+    
+            if (p.procesado1(palabras[medio])) {
+                System.out.println("medio "+ palabras[medio]);
+                break;
+                
+            }
+            else if (p.procesado1(palabras[inicio])) {
+                System.out.println("inicio "+palabras[inicio]);
+                break;
+            }
+            else if (p.procesado1(palabras[fin])) {
+                System.out.println("fin "+palabras[fin]);
+                break;
+            }
+            //derecha
+            else {
                 inicio = medio + 1;
             }
         }
-*/
+
+         //Busca el segundo error con el metodo procesado1
+         inicio = 0;
+         fin = palabras.length - 1;
+     
+         while (inicio <= fin) {
+             int medio = (inicio + fin) / 2;
+     
+             if (p.procesado3(palabras[medio])) {
+                 System.out.println("medio "+ palabras[medio]);
+                 break;
+                 
+             }
+             else if (p.procesado3(palabras[inicio])) {
+                 System.out.println("inicio "+palabras[inicio]);
+                 break;
+             }
+             else if (p.procesado3(palabras[fin])) {
+                 System.out.println("fin "+palabras[fin]);
+                 break;
+             }
+             //izquierda
+             else {
+                fin = medio - 1;
+             }
+         }
+    
         
     }
 }
